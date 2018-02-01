@@ -25,18 +25,12 @@ from django.shortcuts import render
                              # my_data_dictionary,
                               #context_instance=RequestContext(request))
 
-
-
-# def hello(request):
-#     print(dir(request))
-#     print(request.path)
-#     print(request.method)
-#     print(request.GET)
-#     print(request.POST)
-
 def hello(request):
-
     return render(request, "index.html")
+
+def http(request):
+    return render(request, "http.html")
+
 
 def hello_python(request, some):
     return HttpResponse("Hello python!!" + some)
@@ -49,6 +43,7 @@ def sum_two(request, a, b):
 urlpatterns = [
     url(r'^$', hello, name='home'),
     url(r'^python/(?P<some>\w+)$', hello_python),
+    url(r'^http/$', http),
     url(r'^sum/(?P<a>\d+)/(?P<b>\d+)$', sum_two),
     url(r'^admin/', admin.site.urls),
 ]
