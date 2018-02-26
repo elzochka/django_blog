@@ -14,7 +14,7 @@ class Courses(models.Model):
         return self.name
 
 class Lesson(models.Model):
-    subject = models.CharField(verbose_name=u'Course Name', max_length=255, help_text="This is course name")
+    subject = models.CharField(verbose_name=u'Lesson Name', max_length=255, help_text="This is lesson name")
     description = models.TextField()
     course = models.ForeignKey(Courses)
     order = models.PositiveIntegerField()

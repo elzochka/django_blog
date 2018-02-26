@@ -13,7 +13,8 @@ def hello(request):
     return render(request, "index.html")
 
 def http(request):
-    return render(request, "http.html")
+    context = ['value']
+    return render(request, "http.html", context)
 
 
 def hello_python(request, some):

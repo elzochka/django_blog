@@ -14,3 +14,10 @@ def courses_list(request):
     lessons = Lesson.objects.all()
     return render(request, "courses.html", {"courses_list": courses,
                                             'lessons_list': lessons})
+
+def main_page(request):
+    courses = Courses.objects.all()
+    return render(request, "main_page.html", {"courses_list": courses})
+
+def courses_main_page(request):
+    return render(request, "courses_main_page.html")

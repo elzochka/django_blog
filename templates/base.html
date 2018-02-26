@@ -7,13 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Blog Site</title>
+
+    <title>{% block title %}Course Site{% endblock title %}</title>
 
     <!-- Bootstrap -->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <link rel="stylesheet" href="{% static 'css/courses.css' %}">
       <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -29,13 +30,8 @@
     <![endif]-->
   </head>
   <div>
-  <div class="container-outer">
-      <div class="container top-column">
-          <div class="heading">
-              <h1>ALINA'S BLOG<span class="lead"> on Travel</span> </h1>
-          </div>
-      </div>
-      <nav class="navbar navbar-default">
+
+      <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
 
@@ -46,22 +42,8 @@
       <ul class="nav navbar-nav">
 
         <li><a href="/http/">About</a></li>
-        <li><a href="#">Destinations</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Travel Guide <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Thailand</a></li>
-            <li><a href="#">Netherlands</a></li>
-            <li><a href="#">Poland</a></li>
-            <li><a href="#">The Republic of Belarus</a></li>
-            <li><a href="#">Italy</a></li>
-            <li><a href="#">San Marino</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">USA</a></li>
-          </ul>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Lightroom Presents</a></li>
-        <li><a href="#">Inspiration</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="students.html">Students</a></li>
          <li><a href="#">FAQ</a></li>
         <li><a href="#">Subscribe</a></li>
         </li>
@@ -70,14 +52,12 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-  </div><!--container-->
-  <form>
-  <input type="text" name="test" />
-  <input type="submit" />
-  </form>
-  
+{% block main_content %}
 
-    <h1> {{value|date:'D d M Y'}} </h1>
+{% endblock main_content %}
+
+
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
