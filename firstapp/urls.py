@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from instructors.views import hello, hello_python, http, sum_two, instructors_list
+from instructors.views import hello, hello_python, http, sum_two, instructors_list, inst_apply
 from courses.views import courses_list
 from courses.views import main_page
-
+from courses.views import forms
 
 
 
@@ -27,7 +27,8 @@ from courses.views import main_page
 urlpatterns = [
     url(r'^$', hello, name='home'),
     url(r'^main_page/$', main_page),
-
+    url(r'^forms/$', forms),
+    url(r'^inst_apply/$', inst_apply),
     url(r'^python/$', hello_python),
     url(r'^http/$', http),
     url(r'^sum/(?P<a>\d+)/(?P<b>\d+)$', sum_two),

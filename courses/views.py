@@ -21,3 +21,6 @@ def main_page(request):
 
 def courses_main_page(request):
     return render(request, "courses_main_page.html")
+
+def forms(request):
+    return render(request, "forms.html")

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Квадратна фігня</title>
+  <body>
+  <p>Квадратне рівняння a*x*x + b*x*x + c = 0</p>
+  <form method="get">
+      Параметер а: <input type="text" name="a" value="{{ a }}" />
+      {% if a_error %}<br /><em>{{ a_error }}</em>{% endif %}
+      Параметер b: <input type="text" name="b" value="{{ b }}" />
+      {% if b_error %}<br /><em>{{ b_error }}</em>{% endif %}
+      Параметер c: <input type="text" name="c" value="{{ c }}" />
+      {% if c_error %}<br /><em>{{ c_error }}</em>{% endif %}
+      <input type="submit">
+  </form>
+
+  {{ form.as_p }}
+
+
+  {% if not error %}
+  <p>Дискрімінант: {{ d }}</p>
+  <p>{{ result_message}}</p>
+  {% endif %}
+  </body>
+  </head>
+</html>

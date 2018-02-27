@@ -5,6 +5,21 @@ from django.db import models
 
 # Create your models here.
 
+
+
+class InstApply(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField(null=True)
+    package = models.CharField(max_length=10)
+    new_subscribe = models.BooleanField()
+    comment = models.TextField()
+    is_active = models.BooleanField(default=True)
+    date_apply = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Position(models.Model):
     name = models.CharField(max_length=255)
 

@@ -2,9 +2,10 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from instructors.models import Instructors, Position, Course
+from instructors.models import Instructors, Position, Course, InstApply
 from django.db import models
 from django.forms import widgets
+
 
 
 
@@ -48,4 +49,5 @@ class InstructorAdmin(admin.ModelAdmin):
 admin.site.register(Instructors, InstructorAdmin)
 admin.site.register(Position, PositionAdmin)
 admin.site.register(Course)
+admin.site.register(InstApply)
 # Register your models here.
