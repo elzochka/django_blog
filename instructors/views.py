@@ -32,6 +32,10 @@ def instructors_list(request):
 
 
 
+class ModelInstApplyForm(forms.ModelForm):
+    class Meta:
+        model = InstApply
+        exclude = ['date_apply', 'comment', 'is_active']
 
 
 
@@ -45,24 +49,56 @@ class InstApplyForm(forms.Form):
     new_subscribe = forms.BooleanField()
 
 def inst_apply(request):
+
     if request.method == "POST":
-        form = InstApplyForm(request.POST)
+        form = ModelInstApplyForm(request.POST)
         if form.is_valid():
+            instance = form.save()
             # краще писати cleaned_data print(request.POST)
-            # замінюємо це на наступний рядок print(form.cleaned_data)
-            data = form.cleaned_data
-            inst_apply = InstApply()
-            inst_apply.name = data['name']
-            inst_apply.email = data['email']
-            inst_apply.package = data['package']
-            inst_apply.new_subscribe = data['new_subscribe']
+            # замінюємо це на наступний рядок print(form.cleaned_data
+
+            #data = form.cleaned_data видаляємо все закомічене а на його місце пишемо instance=form.save()
+            #inst_apply = InstApply()
+            #inst_apply.name = data['name']
+            #inst_apply.email = data['email']
+            #inst_apply.package = data['package']
+            #inst_apply.new_subscribe = data['new_subscribe']
             messages.success(request, 'Saved!')
 
 
             return redirect('/inst_apply/')
     else:
-        form = InstApplyForm(initial={"package": 'gold', "new_subscribe": True})
+        form = ModelInstApplyForm(initial={"package": 'gold', "new_subscribe": True})
+    return render(request, "inst_apply.html", {'form': form})
+    return redirect('forms')
+
+def instapply_edit(request, pk):
+    instapply = InstApply.objects.get(id=pk)
+
+    if request.method == "POST":
+        form = ModelInstApplyForm(request.POST, instance=instapply)
+        if form.is_valid():
+            instapply = form.save()
+            messages.success(request, 'Saved!')
+            return redirect('/instapply_edit/')
+    else:
+        form = ModelInstApplyForm(initial={"package": 'gold', "new_subscribe": True})
     return render(request, "inst_apply.html", {'form': form})
     return redirect('forms')
 
 
+    form = ModelInstApplyForm(instance=instapply)
+    return render(request, "instapply_edit.html", {'form': form})
+
+
+def instapply_delete(request):
+    instapply = InstApply.objects.get(id=pk)
+
+    if request.method == "POST":
+        instapply.delete()
+
+
+        messages.success(request, 'Deleted!')
+        return redirect('/instapply_edit/')
+
+    return render(request, "instapply_delete.html", {'inst_apply': inst_apply})
