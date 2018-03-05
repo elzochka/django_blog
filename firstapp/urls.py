@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from instructors.views import hello, hello_python, http, sum_two, instructors_list, inst_apply, instapply_edit, instapply_delete
+from instructors.views import hello, hello_python, http, sum_two, instructors_list, inst_apply, inst_apply_edit, instapply_delete
 from courses.views import courses_list
 from courses.views import main_page
 from courses.views import forms
@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^forms/$', forms),
     url(r'^inst_apply/$', inst_apply),
 
-    url(r'^inst_apply/(?P<pk>\d+)/edit/$', instapply_edit),
+    url(r'^inst_apply/(?P<pk>\d+)/edit/$', inst_apply_edit),
     url(r'^inst_apply/(?P<pk>\d+)/delete/$', instapply_delete),
     url(r'^python/$', hello_python),
     url(r'^http/$', http),

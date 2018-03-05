@@ -10,6 +10,7 @@ from instructors.models import Instructors, InstApply
 from django import forms
 from django.contrib import messages
 
+
 def hello(request):
     return render(request, "index.html")
 
@@ -53,7 +54,8 @@ def inst_apply(request):
     if request.method == "POST":
         form = ModelInstApplyForm(request.POST)
         if form.is_valid():
-            instance = form.save()
+            form.save()
+
             # краще писати cleaned_data print(request.POST)
             # замінюємо це на наступний рядок print(form.cleaned_data
 
@@ -72,33 +74,20 @@ def inst_apply(request):
     return render(request, "inst_apply.html", {'form': form})
     return redirect('forms')
 
-def instapply_edit(request, pk):
+
+def inst_apply_edit(request, pk):
     instapply = InstApply.objects.get(id=pk)
-
-    if request.method == "POST":
-        form = ModelInstApplyForm(request.POST, instance=instapply)
-        if form.is_valid():
-            instapply = form.save()
-            messages.success(request, 'Saved!')
-            return redirect('/instapply_edit/')
-    else:
-        form = ModelInstApplyForm(initial={"package": 'gold', "new_subscribe": True})
-    return render(request, "inst_apply.html", {'form': form})
-    return redirect('forms')
-
-
     form = ModelInstApplyForm(instance=instapply)
-    return render(request, "instapply_edit.html", {'form': form})
+
+    return render(request, "inst_apply_edit.html", {'form': form})
 
 
-def instapply_delete(request):
+def instapply_delete(request, pk):
     instapply = InstApply.objects.get(id=pk)
 
     if request.method == "POST":
         instapply.delete()
-
-
         messages.success(request, 'Deleted!')
-        return redirect('/instapply_edit/')
+        return redirect('/inst_apply/')
 
-    return render(request, "instapply_delete.html", {'inst_apply': inst_apply})
+    return render(request, "inst_apply_delete.html", {'inst_apply': instapply})
